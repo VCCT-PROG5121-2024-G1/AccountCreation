@@ -18,6 +18,7 @@ public class AccountCreationClass
     public static final String RESET = "\u001B[0m";
     public static final String GREEN = "\u001B[32m";
     public static final String RED = "\u001B[31m";
+    public static final String YELLOW = "\u001B[33m";
     
 //Username-------------------------------------------------------------------------------------
     public String CheckUsername(String username)
@@ -78,6 +79,7 @@ public class AccountCreationClass
         //this if statmet id bassed off a prompt to make sure that there are letters in the space provided so that it cant be skipped
     if (Fname != null && !Fname.trim().isEmpty())
     {
+        FnameCheck = false;
         System.out.println(GREEN + "First Name captured" + RESET);
     } 
     else
@@ -115,6 +117,39 @@ public String CheckSname(String Sname)
 return"";
 }
 
+//Telling you, that you have completed the registration and now its time to log in--------------------------------------------------------------------------------------
+
+public void RegConfirmation(String username) 
+        {
+        System.out.println("\n----------------------------------------------");
+        System.out.println(YELLOW + "Thank you for registering!" + RESET);
+        System.out.println(YELLOW + "Please log in with the following credentials:" + RESET);
+        System.out.println(YELLOW + "Username: " + username + RESET);
+        }
+//Login with password---------------------------------------------------------------
+
+public void Login(String Fname, String password)
+    {
+    Scanner scanner = new Scanner(System.in);
+    boolean loggedIn = false;
+    
+    while (!loggedIn)  
+        {
+        System.out.println("Password: ");
+        String inputPassword = scanner.nextLine();
+
+        if (inputPassword.equals(password)) {
+            System.out.println(YELLOW +"Welcome, " + Fname + RESET);
+            loggedIn = true;
+        }  
+        else 
+        {
+            System.out.println(RED + "Incorrect password. Please try again." + RESET);
+        }
+        }
+    scanner.close();
+}
+
 //Prompts-------------------------------------------------------------------------------------
     public void CheckUser()
     {
@@ -140,7 +175,15 @@ return"";
 
         CheckSname(Sname);
         
+        //login stuff
+        
+        RegConfirmation(username);
+        
+        Login(username, password);
+        
         scanner.close();
+        
     }
+    
 }
 //-----------------------------------------------------MAR26ENDOFFILE______________________________

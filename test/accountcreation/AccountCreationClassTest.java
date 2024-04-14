@@ -42,7 +42,7 @@ public void testCheckUsername() {
     @Test
 public void testPassword() {
     System.out.println("Password");
-    String password = "#125896MAtt"; // Example password meeting the criteria
+    String password = "125896@MAtt"; // Example password meeting the criteria
     AccountCreationClass instance = new AccountCreationClass();
     String expResult = "Password successfully captured"; // Update expected result
     String result = instance.CheckPassword(password);
