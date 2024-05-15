@@ -15,8 +15,10 @@ public class AccountCreation {
      */
 
     public static void main(String[] args) {
-        AccountCreationClass accountCreation = new AccountCreationClass();
-        accountCreation.CheckUser();
+       // AccountCreationClass accountCreation = new AccountCreationClass();
+       // accountCreation.CheckUser();
+        ActionClass ActionClass = new ActionClass();
+        ActionClass.ActionClass();
     }
 }
 //-----------------------------------------------------MAR26ENDOFFILE______________________________
