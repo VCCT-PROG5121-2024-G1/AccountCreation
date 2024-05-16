@@ -31,7 +31,7 @@ public class ActionClass
     
     public String Option1()
     {
-        
+        System.out.println("Please choose how many Tasks you wish to create:");
         
         return"";
     }
