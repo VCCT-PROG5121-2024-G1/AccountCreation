@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class ActionClass 
 {
+    public static final String GREEN = "\u001B[32m";
     public static final String YELLOW = "\u001B[33m";
     public static final String RESET = "\u001B[0m";
     
@@ -28,16 +29,46 @@ public class ActionClass
         System.out.println(YELLOW + "Option 3) Quit" + RESET);
     }
     
-    public void option1() 
-    {
+    //option 1------------------------------------------------------------------
+    
+     public void option1() 
+     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please choose how many Tasks you wish to create:");
         int numTasks = scanner.nextInt();
         scanner.nextLine(); 
         
-        for (int i = 0; i < numTasks; i++) {
-            System.out.println("Task " + (i + 1) + ":");
+        for (int i = 0; i < numTasks; i++) 
+        {
+            System.out.println(GREEN + "Task " + (i + 1) + ":" + RESET);
+            System.out.print(YELLOW + "Enter the name of the task: " + RESET);
+            String taskName = scanner.nextLine();
             
+            System.out.print(YELLOW + "Enter the description of the task: " + RESET);
+            String taskDescription = scanner.nextLine();
+            
+            System.out.print(YELLOW + "Enter the duration of the task (in hours): " + RESET);
+            int taskDuration = scanner.nextInt();
+            scanner.nextLine();
+            
+            //createing the tasks-----------------------------------------------
+            
+            System.out.println(GREEN + "Task created successfully:" + RESET);
+            System.out.println(YELLOW + "Name: " + RESET + taskName);
+            System.out.println("------------------------------------------------");
+            System.out.println(YELLOW + "Description: " + RESET + taskDescription);
+            System.out.println("------------------------------------------------");
+            System.out.println(YELLOW + "Duration: " + RESET + taskDuration + " hours");
+            
+            if (i < numTasks - 1) 
+            {
+                System.out.print("Do you want to create another task? (yes/no): ");
+                String choice = scanner.nextLine();
+                if (!choice.equalsIgnoreCase("yes")) 
+                {
+                    break; //Exit if user doesn't want to create another task---
+                }
+            }
         }
     }
     
