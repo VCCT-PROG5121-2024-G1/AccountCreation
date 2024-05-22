@@ -17,8 +17,8 @@ public class AccountCreation {
     public static void main(String[] args) {
        // AccountCreationClass accountCreation = new AccountCreationClass();
        // accountCreation.CheckUser();
-        ActionClass ActionClass = new ActionClass();
-        ActionClass.ActionClass();
+        ActionClass action = new ActionClass();
+        action.start();
     }
 }
 //-----------------------------------------------------MAR26ENDOFFILE______________________________
