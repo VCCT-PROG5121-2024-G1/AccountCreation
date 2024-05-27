@@ -15,10 +15,10 @@ public class AccountCreation {
      */
 
     public static void main(String[] args) {
-      //AccountCreationClass accountCreation = new AccountCreationClass();
-      //accountCreation.CheckUser();
-        ActionClass action = new ActionClass();
-        action.start();
+      AccountCreationClass accountCreation = new AccountCreationClass();
+      accountCreation.CheckUser();
+       // ActionClass action = new ActionClass();
+       // action.start();
     }
 }
 //-----------------------------------------------------MAR26ENDOFFILE______________________________
