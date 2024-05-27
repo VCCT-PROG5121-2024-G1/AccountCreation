@@ -31,7 +31,7 @@ jobs:
      # Compiles classes to test 
       - name: compile classes
         working-directory: ./src
-        run: javac -cp "../testresources/junit-platform-console-standalone-1.9.2.jar" ./AccountCreation/AccountCreationClass.java  "../test/AccountCreationClassTest/AccountCreationClassTest.java"  
+        run: javac -cp "../testresources/junit-platform-console-standalone-1.9.2.jar" ./accountcreation/AccountCreationClass.java  "../test/accountcreation/AccountCreationClassTest.java"  
 
     # list contents of src to verify that classess compiled 
       - name: List contents of src directory after compile
@@ -40,12 +40,12 @@ jobs:
         
        # copy compiled classes to test directory 
       - name : copy compiled classes to testresources directory 
-        working-directory: ./src/AccountCreation
-        run: cp -t  "../../test/AccountCreationClassTest" AccountCreationClassTest.class
+        working-directory: ./src/accountcreation
+        run: cp -t  "../../test/accountcreation" AccountCreationClassTest.class
       
         #copy compiled tests 
       - name : copy compiled Test classes to testresources directory 
-        working-directory: ./test/AccountCreation
+        working-directory: ./test/accountcreation
         run: cp -t  "../../testresources/" AccountCreationClassTest.class
         
         # list contents or directory
