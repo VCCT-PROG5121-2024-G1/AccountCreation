@@ -1,11 +1,12 @@
 # This is a basic workflow that is manually triggered
-name: TestPROGPOE
+
+name: AccountCreationClass Tests
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ main ]
+    branches: [ main, AccountCreation ]
   pull_request:
     branches: [ main ]
 
@@ -23,48 +24,38 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # List contents or directory
+      
+     # list contents or directory
       - name: List contents
         run: ls
-
-      # Compiles classes to test
-      - name: Compile classes
+     # Compiles classes to test 
+      - name: compile classes
         working-directory: ./src
-        run: javac -cp "../testresources/junit-platform-console-standalone-1.8.2.jar" ./poe_task2/Login.java ./poe_task2/Users.java ../accountcreation/AccountCreationClass.java ../accountcreation/AccountCreationClassTest.java
+        run: javac -cp "../testresources/junit-platform-console-standalone-1.9.2.jar" ./AccountCreation/AccountCreationClass.java  "../test/AccountCreationClassTest/AccountCreationClassTest.java"  
 
-      # List contents of src to verify that classes compiled
+    # list contents of src to verify that classess compiled 
       - name: List contents of src directory after compile
-        working-directory: ./src/poe_task2
+        working-directory: ./src/AccountCreation
         run: ls
-
-      # Copy compiled classes to test directory
-      - name: Copy compiled classes to test directory
-        working-directory: ./src/poe_task2
-        run: cp -t ../../test/poe_task2 Login.class Users.class
-
-      # Copy compiled account creation classes to test directory
-      - name: Copy compiled account creation classes to test directory
-        working-directory: ./src/accountcreation
-        run: cp -t ../../test/accountcreation AccountCreationClass.class AccountCreationClassTest.class
-
-      # List contents of test package
-      - name: List contents of test package
-        working-directory: ./test/poe_task2
+        
+       # copy compiled classes to test directory 
+      - name : copy compiled classes to testresources directory 
+        working-directory: ./src/AccountCreation
+        run: cp -t  "../../test/AccountCreationClassTest" AccountCreationClassTest.class
+      
+        #copy compiled tests 
+      - name : copy compiled Test classes to testresources directory 
+        working-directory: ./test/AccountCreation
+        run: cp -t  "../../testresources/" AccountCreationClassTest.class
+        
+        # list contents or directory
+      - name: List contents test package
+        working-directory: ./test/AccountCreationClassTest
         run: ls
-
-      - name: List contents of account creation package
-        working-directory: ./test/accountcreation
-        run: ls
-
-      # Run LoginTest and output report
-      - name: Run LoginTest and create report
+        
+        #run TestClass tests and output report 
+      - name: run TestClass tests and create report 
         working-directory: ./test
         run: |
-          java -jar ../testresources/junit-platform-console-standalone-1.8.2.jar -cp "." --select-class poe_task2.LoginTest
-
-      # Run AccountCreationClassTest and output report
-      - name: Run AccountCreationClassTest and create report
-        working-directory: ./test
-        run: |
-          java -jar ../testresources/junit-platform-console-standalone-1.8.2.jar -cp "." --select-class accountcreation.AccountCreationClassTest
+          ls
+          java -jar  "../testresources/junit-platform-console-standalone-1.9.2.jar" -cp "." --select-class AccountCreation.AccountCreationClassTest 
