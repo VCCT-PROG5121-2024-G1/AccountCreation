@@ -14,11 +14,13 @@ public class AccountCreation {
      * @param args the command line arguments
      */
 
-    public static void main(String[] args) {
-      AccountCreationClass accountCreation = new AccountCreationClass();
-      accountCreation.CheckUser();
-       // ActionClass action = new ActionClass();
-       // action.start();
+      public static void main(String[] args) {
+       // AccountCreationClass accountCreation = new AccountCreationClass();
+        ActionClass action = new ActionClass();
+
+        
+        //accountCreation.CheckUser();
+        action.start();
     }
 }
-//-----------------------------------------------------MAR26ENDOFFILE______________________________
+//-----------------------------------------------------MAR26ENDOFFILE-----------______________________________
