@@ -25,37 +25,36 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-     # list contents or directory
-      - name: List contents
-        run: ls
-     # Compiles classes to test 
-      - name: compile classes
-        working-directory: ./src
-        run: javac -cp "../testresources/junit-platform-console-standalone-1.9.2.jar" ./accountcreation/AccountCreationClass.java  "../test/accountcreation/AccountCreationClassTest.java"  
-
-    # list contents of src to verify that classess compiled 
-      - name: List contents of src directory after compile
-        working-directory: ./src/AccountCreation
-        run: ls
-        
-       # copy compiled classes to test directory 
-      - name : copy compiled classes to testresources directory 
-        working-directory: ./src/accountcreation
-        run: cp -t  "../../test/accountcreation" AccountCreationClassTest.class
+      # List contents of the root directory
+      - name: List contents of root directory
+        run: ls -R
       
-        #copy compiled tests 
-      - name : copy compiled Test classes to testresources directory 
-        working-directory: ./test/accountcreation
-        run: cp -t  "../../testresources/" AccountCreationClassTest.class
-        
-        # list contents or directory
-      - name: List contents test package
-        working-directory: ./test/AccountCreationClassTest
+      # Compiles classes to test 
+      - name: Compile classes
+        working-directory: ./src
+        run: javac -cp "../testresources/junit-platform-console-standalone-1.9.2.jar" accountcreation/AccountCreationClass.java  "../test/accountcreation/AccountCreationClassTest.java"  
+
+      # List contents of src directory after compile
+      - name: List contents of src/accountcreation directory after compile
+        working-directory: ./src/accountcreation
         run: ls
         
-        #run TestClass tests and output report 
-      - name: run TestClass tests and create report 
-        working-directory: ./test
-        run: |
-          ls
-          java -jar  "../testresources/junit-platform-console-standalone-1.9.2.jar" -cp "." --select-class AccountCreation.AccountCreationClassTest 
+      # Copy compiled classes to test directory 
+      - name: Copy compiled classes to testresources directory 
+        working-directory: ./src/accountcreation
+        run: cp AccountCreationClass.class ../../testresources/
+      
+      # Copy compiled test classes 
+      - name: Copy compiled test classes to testresources directory 
+        working-directory: ./test/accountcreation
+        run: cp AccountCreationClassTest.class ../../testresources/
+        
+      # List contents of testresources directory
+      - name: List contents of testresources directory
+        working-directory: ./testresources
+        run: ls
+        
+      # Run TestClass tests and output report 
+      - name: Run TestClass tests and create report 
+        working-directory: ./testresources
+        run: java -jar junit-platform-console-standalone-1.9.2.jar -cp "." --select-class AccountCreation.AccountCreationClassTest
